@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/Appointements', [AppointmentsControlller::class]);
+    Route::resource('/Cart', [CartController::class]);
+    Route::resource('/CartDetail', [CartDetailController::class]);
+    Route::resource('/Order', [OrderController::class]);
+    Route::resource('/OrderDetails', [OrderDetailsController::class]);
+    Route::resource('/Pet', [PetController::class]);
+    Route::resource('/Product', [ProductController::class]);
+});
