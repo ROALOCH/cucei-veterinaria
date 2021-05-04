@@ -1,6 +1,15 @@
 <?php
 
+use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\ProductController;
+use App\Models\CartDetail;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +27,17 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::resource('/Appointements', [AppointmentsControlller::class]);
-    Route::resource('/Cart', [CartController::class]);
-    Route::resource('/CartDetail', [CartDetailController::class]);
-    Route::resource('/Order', [OrderController::class]);
-    Route::resource('/OrderDetails', [OrderDetailsController::class]);
-    Route::resource('/Pet', [PetController::class]);
-    Route::resource('/Product', [ProductController::class]);
+Route::get('/login', function () {
+    return view('welcome');
+})->name("login");
+
+
+Route::middleware('auth')->group(function () {
+    Route::resource('/Appointements',AppointmentsController::class);
+    Route::resource('/Cart', CartController::class);
+    Route::resource('/CartDetail',CartDetail::class);
+    Route::resource('/Order',OrderController::class);
+    Route::resource('/OrderDetails',OrderDetailsController::class);
+    Route::resource('/Pet',PetController::class);
+    Route::resource('/Product',ProductController::class);
 });
