@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('testLayouts');
+    return view('shoppingCart');
 });
 
 
