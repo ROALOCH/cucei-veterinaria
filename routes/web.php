@@ -23,13 +23,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('testLayouts');
+    return view('welcome');
 });
 
 
-Route::get('/login', function () {
-    return view('welcome');
-})->name("login");
+// Route::get('/login', function () {
+//     return view('welcome');
+// })->name("login");
 
 
 Route::middleware('auth')->group(function () {
@@ -41,3 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/Pet',PetController::class);
     Route::resource('/Product',ProductController::class);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
