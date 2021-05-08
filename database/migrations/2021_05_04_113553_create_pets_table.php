@@ -17,8 +17,10 @@ class CreatePetsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name', 30);
-            $table->string('breed', 100); // 100 it's too much
-            $table->string('color', 30);
+            $table->string('race', 50);
+            $table->string('breed', 50);
+            $table->date('birth_date');
+            $table->string('color', 50);
             $table->timestamps();
         });
     }
