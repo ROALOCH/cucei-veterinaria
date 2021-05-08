@@ -37,7 +37,7 @@
                 </div>
                 <hr class="my-4">
                 <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Information de Especie/Raza</h6>
+                <h6 class="heading-small text-muted mb-4">Informacíon de Especie/Raza</h6>
                 <div class="pl-lg-4">
                     <div class="row">
                         <div class="col-lg-6">
