@@ -27,9 +27,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', function () {
-    return view('welcome');
-})->name("login");
+// Route::get('/login', function () {
+//     return view('welcome');
+// })->name("login");
 
 
 Route::middleware('auth')->group(function () {
@@ -41,3 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/Pet',PetController::class);
     Route::resource('/Product',ProductController::class);
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
