@@ -23,9 +23,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect()->route('login');
 });
 
+// Route::get('/car', function (){
+//     return view('shoppingCart');
+// })->name('car');
 
 // Route::get('/login', function () {
 //     return view('welcome');
@@ -43,5 +46,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('home');
 })->name('dashboard');
