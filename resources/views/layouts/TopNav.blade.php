@@ -34,7 +34,7 @@
             </a>
           </li>
           <li>
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="{{route('Cart.index')}}">
               <i class="ni ni-cart"></i>
               <span class="badge">10</span>
             </a>
