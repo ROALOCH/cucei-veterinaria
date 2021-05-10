@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('image_url', 500);
             $table->unsignedDecimal('price', 8, 2);
             $table->integer('stock');
+            $table->string('type', 15);
             $table->timestamps();
         });
     }
