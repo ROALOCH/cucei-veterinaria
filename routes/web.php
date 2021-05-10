@@ -46,5 +46,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('home');
+    return view('products.productForm');
 })->name('dashboard');
