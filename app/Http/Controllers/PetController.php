@@ -24,7 +24,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('pets.petForm');
     }
 
     /**
@@ -46,7 +46,7 @@ class PetController extends Controller
      */
     public function show(Pet $pet)
     {
-        //
+        return response()->view('pets.PetShow', $pet);
     }
 
     /**

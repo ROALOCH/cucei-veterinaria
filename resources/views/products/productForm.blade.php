@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="card-body">
-            <form>
+            <form action="{{route('Product.store')}}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="pl-lg-4">
                     <div class="row">
                         <div class="col">
@@ -25,7 +26,7 @@
                             <div class='row'>
                                 <div class="col-6 form-group">
                                     <label class="form-control-label" for="image-input">Imagen</label>
-                                    <input type="file" id='image-input' name="image-input" class="form-control">
+                                    <input type="file" id='image' name="image" class="form-control">
                                 </div>
                                 <div class='col-6 form-group'>
                                     <label class="form-control-label" for="price">Precio</label>
@@ -57,7 +58,7 @@
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="button" class="btn btn-primary my-4">Registrar</button>
+                    <input type="submit" class="btn btn-primary my-4" value="Registrar">
                 </div>
             </form>
         </div>

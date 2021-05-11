@@ -35,7 +35,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product($request->all());
+        if($request->hasFile('image')) {
+            $file = $request->file("image");
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path("img/products/"),$filename);
+            $product->image_url = $filename;
+        }
+        $product->saveOrFail();
+
+        /*
+         * Aun no funciona :
+         */
     }
 
     /**
