@@ -1,44 +1,51 @@
 @extends('layouts.Arquitect')
 @section('Content')
-        <div class="row">
+        <script type="text/javascript" src="{{ asset('assets/js/product/show.js') }}"></script>
+        <div class="row d-flex justify-content-center">
             <!-- CARD IMAGEN -->
-            <div class="col-7">
+            <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <img
                         class="card-img-top"
-                        src="https://bit.ly/3xLh9m1"
+                        src="{{ asset('storage/products/'.$product->image_url) }}"
                         alt="product"
                     />
                 </div>
             </div>
             <!-- CARD DETALLES -->
-            <div class="col-5">
+            <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="card-title">DogChow Extra Life 15KG</h1>
+                        <h1 class="card-title text-center">{{ $product->name }}</h1>
                         <p class="card-text">
-                            En Purina Dog Chow compartimos la responsabilidad de mejorar la
-                            calidad de vida de tu perro - 100% completo y balanceado -
-                            Contiene una mezcla especial de antioxidantes, vitaminas y
-                            minerales - Promueve un pelaje brillante - Ayuda a mantener sus
-                            dientes limpios
+                            {{ $product->description }}
                         </p>
                         <hr />
-                        <h2>$684.00 MXN</h2>
-                        <hr />
-
+                        <h2 class="text-center"> ${{ $product->price }}</h2>
+                        <h2 class="text-center"><b id="stock">{{ $product->stock }} </b> disponibles</h2>
+                        <hr>
                         <!-- BOTÓN AGREGAR CARRITO -->
 
                         <div class="d-flex justify-content-center">
-                            <button
-                                class="btn btn-icon btn-3 btn btn-outline-success"
-                                type="button"
-                            >
+                            <form action="{{ route('Cart.store') }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input class="form-control" name="quantity" id="quantity" type="number" value="" max="{{ $product->stock }}" required>
+                                <input type="submit" id="submit" style="display: none">
+                                <br>
+                                <button
+                                    class="btn btn-icon btn-3 btn btn-outline-success"
+                                    type="button"
+                                    onclick="_submit();"
+                                >
                                 <span class="btn-inner--icon"
-                                    ><i class="ni ni-basket"></i
-                                ></span>
-                                <span class="btn-inner--text">Agregar al Carrito</span>
-                            </button>
+                                ><i class="ni ni-basket"></i
+                                    ></span>
+                                    <span class="btn-inner--text">Agregar al Carrito</span>
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                 </div>

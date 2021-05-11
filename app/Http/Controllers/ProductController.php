@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -38,15 +41,13 @@ class ProductController extends Controller
         $product = new Product($request->all());
         if($request->hasFile('image')) {
             $file = $request->file("image");
-            $filename = $file->getClientOriginalName();
-            $file->move(public_path("img/products/"),$filename);
+            $filename = str_shuffle(str_replace('.','',$file->getClientOriginalName())).
+                        '.'.$file->getClientOriginalExtension();
+            $file->move("storage/products/",$filename);
             $product->image_url = $filename;
         }
-        $product->saveOrFail();
-
-        /*
-         * Aun no funciona :
-         */
+        $product->save();
+        return response()->redirectToRoute('Product.show',$product->id);
     }
 
     /**
@@ -55,9 +56,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return response()->view('products.productShow', ['product' => $product ]);
     }
 
     /**

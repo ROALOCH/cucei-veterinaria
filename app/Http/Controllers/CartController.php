@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -14,7 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('shoppingCart');
+        $basket = Cart::byUser(Auth::user()->id)->with('product')->get();
+        return response()->view('shoppingCart',['basket' => $basket]);
     }
 
     /**
@@ -35,7 +37,10 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart = new Cart($request->all());
+        $cart->saveOrFail();
+
+        return response()->redirectToRoute('Cart.index');
     }
 
     /**

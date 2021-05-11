@@ -14,17 +14,18 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($basket as $cart)
                 <tr>
-                    <td>123456789</td>
-                    <td>DogChow Extra Life 15KG</td>
-                    <td>$684.00</td>
+                    <td>{{ $cart->product_id }}</td>
+                    <td>{{ $cart->product->name }}</td>
+                    <td>${{ $cart->product->price }}</td>
                     <td class='w-25'>
                         <div>
-                            <input class='form-control' type='number' min='1' step='1' value='3'/>
+                            <input class='form-control' type='number' min='1' step='1' value="{{ $cart->quantity }}"/>
                         </div>
                     </td>
                     <td>
-                        <strong>$2,052.00</strong>
+                        <strong>${{ $cart->total }}</strong>
                     </td>
                     <td>
                         <button class='btn btn-icon btn-outline-danger'>
@@ -34,6 +35,7 @@
                         </button>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <div class='card p-3'>
