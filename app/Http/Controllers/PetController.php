@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
@@ -14,7 +15,8 @@ class PetController extends Controller
      */
     public function index()
     {
-        return view('pets.petIndex');
+        $pets = Pet::byOwner(Auth::user()->id)->get();
+        return response()->view('pets.petIndex', ['pets' => $pets]);
     }
 
     /**

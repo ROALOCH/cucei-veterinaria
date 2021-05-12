@@ -17,7 +17,13 @@ class Pet extends Model
         'color'
     ];
 
-    public function owner(){
+    public function owner()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeByOwner($query, $user_id)
+    {
+        return $query->where('user_id','=',$user_id);
     }
 }
