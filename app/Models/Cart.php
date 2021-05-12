@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,5 +38,13 @@ class Cart extends Model
 
     public function getTotalAttribute(){
         return $this->quantity * $this->product->price;
+    }
+
+    public static function total(Collection $carts){
+        $total = 0.0;
+        foreach ($carts as $cart) {
+            $total += $cart->total;
+        }
+        return $total;
     }
 }

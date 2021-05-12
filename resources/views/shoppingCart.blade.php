@@ -1,7 +1,15 @@
 @extends('layouts.Arquitect') @section('Content')
+<script type="text/javascript" src="{{ asset('assets/js/cart/update.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/cart/delete.js') }}"></script>
 <div class="container">
-    <h1 class='text-center mb-5'>Carrito de Compras</h1>
+    <h1 class='text-center mb-5'>
+        Carrito de Compras
+        @if(count($basket) < 1)
+            Vacio
+        @endif
+    </h1>
     <div class='table-responsive'>
+        @if(count($basket) > 0)
         <table class="table align-items-center">
             <thead class='thead-light'>
                 <tr>
@@ -15,20 +23,29 @@
             </thead>
             <tbody>
                 @foreach($basket as $cart)
-                <tr>
+                <tr id="{{ $cart->id }}">
                     <td>{{ $cart->product_id }}</td>
                     <td>{{ $cart->product->name }}</td>
                     <td>${{ $cart->product->price }}</td>
                     <td class='w-25'>
                         <div>
-                            <input class='form-control' type='number' min='1' step='1' value="{{ $cart->quantity }}"/>
+                            <input
+                                class='form-control'
+                                type='number'
+                                min='1'
+                                step='1'
+                                onchange="updateCart('{{ $cart->id }}', '{{ $cart->product->stock }}')"
+                                value="{{ $cart->quantity }}"/>
+
                         </div>
                     </td>
                     <td>
                         <strong>${{ $cart->total }}</strong>
                     </td>
                     <td>
-                        <button class='btn btn-icon btn-outline-danger'>
+                        <button
+                            onclick="deleteCart('{{ $cart->id }}')"
+                            class='btn btn-icon btn-outline-danger'>
                             <span class='btn-inner--icon'>
                                 <i class='fas fa-trash'></i>
                             </span>
@@ -38,10 +55,21 @@
                 @endforeach
             </tbody>
         </table>
+
+        <form id="updateCart" action="{{ route('Cart.update', $cart) }}" method="post">
+            {{ method_field('PUT') }}
+            {{ @csrf_field() }}
+            <input type="hidden" name="quantity" id="quantity" value="">
+        </form>
+        <form id="deleteCard" action="{{ route('Cart.destroy', $cart) }}" method="post">
+            {{ method_field('DELETE') }}
+            {{ @csrf_field() }}
+            <input type="hidden" name="id" id="cart_id" value="">
+        </form>
         <div class='card p-3'>
             <div class='row'>
                 <div class="col-8 d-flex align-items-center">
-                    <h3>Total a Pagar: $2,052.00 MXN</h3>
+                    <h3>Total a Pagar: ${{ App\Models\Cart::total($basket) }} MXN</h3>
                 </div>
                 <div class='col-4 d-flex align-items-center justify-content-end'>
                     <button
@@ -66,5 +94,6 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 @endsection

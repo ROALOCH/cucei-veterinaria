@@ -6,7 +6,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\ProductController;
-use App\Models\CartDetail;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +37,6 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('/Appointements',AppointmentsController::class);
     Route::resource('/Cart', CartController::class);
-    Route::resource('/CartDetail',CartDetail::class);
     Route::resource('/Order',OrderController::class);
     Route::resource('/OrderDetails',OrderDetailsController::class);
     Route::resource('/Pet',PetController::class);
@@ -46,5 +44,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('products.productForm');
+    return view('home');
 })->name('dashboard');

@@ -16,6 +16,9 @@ class CartController extends Controller
     public function index()
     {
         $basket = Cart::byUser(Auth::user()->id)->with('product')->get();
+        if(count($basket) < 1) {
+            return response()->redirectToRoute('dashboard');
+        }
         return response()->view('shoppingCart',['basket' => $basket]);
     }
 
@@ -72,9 +75,13 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, Cart $cart, $id)
     {
-        //
+        $cart = Cart::findOrFail($id);
+        $cart->quantity = $request->quantity;
+        $cart->save();
+
+        return response()->redirectToRoute('Cart.index');
     }
 
     /**
@@ -83,8 +90,11 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy(Cart $cart, $id)
     {
-        //
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+
+        return response()->redirectToRoute('Cart.index');
     }
 }
