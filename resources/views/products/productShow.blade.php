@@ -37,7 +37,7 @@
                                        name="quantity"
                                        id="quantity"
                                        type="number"
-                                       value=""
+                                       value="0"
                                        max="{{ $product->type == 'product' ? $product->stock : 100000 }}" required>
                                 <input type="submit" id="submit" style="display: none">
                                 <br>

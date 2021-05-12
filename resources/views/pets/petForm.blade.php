@@ -9,14 +9,22 @@
             </div>
         </div>
         <div class="card-body">
-            <form>
+            <form action="{{route('Pet.store')}}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <h6 class="heading-small text-muted mb-4">Información General</h6>
                 <div class="pl-lg-4">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-username">Nombre</label>
-                                <input type="text" id="input-username" class="form-control" placeholder="Nombre de Mascota" value="Apolo">
+                                <input
+                                    type="text"
+                                    id="input-username"
+                                    class="form-control"
+                                    name="name"
+                                    placeholder="Nombre de Mascota"
+                                    value="Apolo">
                             </div>
                         </div>
                     </div>
