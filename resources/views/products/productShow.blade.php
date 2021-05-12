@@ -21,8 +21,10 @@
                             {{ $product->description }}
                         </p>
                         <hr />
-                        <h2 class="text-center"> ${{ $product->price }}</h2>
+                        <h2 class="text-center"> ${{ $product->price }} MXN</h2>
+                        @if($product->type == 'product')
                         <h2 class="text-center"><b id="stock">{{ $product->stock }} </b> disponibles</h2>
+                        @endif
                         <hr>
                         <!-- BOTÓN AGREGAR CARRITO -->
 
@@ -31,13 +33,18 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input class="form-control" name="quantity" id="quantity" type="number" value="" max="{{ $product->stock }}" required>
+                                <input class="form-control"
+                                       name="quantity"
+                                       id="quantity"
+                                       type="number"
+                                       value=""
+                                       max="{{ $product->type == 'product' ? $product->stock : 100000 }}" required>
                                 <input type="submit" id="submit" style="display: none">
                                 <br>
                                 <button
                                     class="btn btn-icon btn-3 btn btn-outline-success"
                                     type="button"
-                                    onclick="_submit();"
+                                    onclick="_submit('{{ $product->type }}');"
                                 >
                                 <span class="btn-inner--icon"
                                 ><i class="ni ni-basket"></i

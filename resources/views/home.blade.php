@@ -1,4 +1,6 @@
-@extends('layouts.Arquitect') @section('Content')
+@extends('layouts.Arquitect')
+@section('Content')
+<script type="text/javascript" src="{{ asset('assets/js/home/utils.js') }}"></script>
 <div class="container">
     <h1>Ultimos Productos</h1>
     <hr/>
@@ -8,21 +10,21 @@
             <div class="card m-2">
                 <img class="card-img-top" src="{{ asset('storage/products/'. $product->image_url) }}">
                 <div class="card-body">
-                    <h3 class="card-title">DogChow Extra Life 15KG</h3>
-                    <p class="card-text">$684.00 MXN</p>
-                    <button class="btn btn-icon btn-outline-info btn-block" type="button">
+                    <h3 class="card-title">{{ $product->name }}</h3>
+                    <p class="card-text">${{ $product->price }} MXN</p>
+                    <a href="{{ config('APP_URL').'/Product/'.$product->id }}" class="btn btn-icon btn-outline-info btn-block">
                     <span class="btn-inner--icon">
                     <i class="ni ni-bold-up"></i>
                     </span>
                         <span class="btn-inner--text">Ver</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
 
         @endforeach
         <div class="m-2 d-flex justify-content-center">
-            <button class='btn btn-icon btn-primary'>
+            <button class='btn btn-icon btn-primary' title="Mostrar todos los productos">
                 <span class='btn-inner--icon'>
                     <i class='ni ni-bold-right'></i>
                 </span>
@@ -32,34 +34,25 @@
     <h1>Ultimos Servicios</h1>
     <hr/>
     <div class='d-flex flex-row justify-content-between mb-5'>
-        <div class="card m-2">
-            <img class="card-img-top" src="https://bit.ly/3uvGSgk">
-            <div class="card-body">
-                <h3 class="card-title">Baño de Mascota Premium</h3>
-                <p class="card-text">$350.00 MXN</p>
-                <button class="btn btn-icon btn-outline-info btn-block" type="button">
+        @foreach($services as $service)
+        <div class="col col-md-5 col-sm-10 col-lg-5">
+            <div class="card m-2">
+                <img class="card-img-top" src="{{ asset('storage/products/'. $service->image_url) }}">
+                <div class="card-body">
+                    <h3 class="card-title">{{ $service->name }}</h3>
+                    <p class="card-text">${{ $service->price }} MXN</p>
+                    <a href="{{ config('APP_URL').'/Product/'.$product->id }}" class="btn btn-icon btn-outline-info btn-block">
                     <span class="btn-inner--icon">
                     <i class="ni ni-bold-up"></i>
                     </span>
-                    <span class="btn-inner--text">Ver</span>
-                </button>
+                        <span class="btn-inner--text">Ver</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="card m-2">
-            <img class="card-img-top" src="https://bit.ly/3uvGSgk">
-            <div class="card-body">
-                <h3 class="card-title">Baño de Mascota Premium</h3>
-                <p class="card-text">$350.00 MXN</p>
-                <button class="btn btn-icon btn-outline-info btn-block" type="button">
-                    <span class="btn-inner--icon">
-                    <i class="ni ni-bold-up"></i>
-                    </span>
-                    <span class="btn-inner--text">Ver</span>
-                </button>
-            </div>
-        </div>
+        @endforeach
         <div class="m-2 d-flex justify-content-center">
-            <button class='btn btn-icon btn-primary'>
+            <button class='btn btn-icon btn-primary' title="Mostrar todos los productos">
                 <span class='btn-inner--icon'>
                     <i class='ni ni-bold-right'></i>
                 </span>

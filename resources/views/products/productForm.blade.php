@@ -44,13 +44,13 @@
                             <div class='row'>
                                 <div class='col-6 form-group'>
                                     <label class="form-control-label" for="stock">Cantidad a Almacen</label>
-                                    <input type="number" step='0.01' id='stock' name="stock" class="form-control" value='10'>
+                                    <input type="number" step='0.01' id='stock' name="stock" class="form-control" required>
                                 </div>
                                 <div class='col-6 form-group'>
                                     <label class="form-control-label" for="type">Tipo de Registro</label>
                                     <select class='form-control' name="type" id="type">
-                                        <option value='producto'>Producto</option>
-                                        <option value='servicio'>Servicio</option>
+                                        <option value='product'>Producto</option>
+                                        <option value='service'>Servicio</option>
                                     </select>
                                 </div>
                             </div>

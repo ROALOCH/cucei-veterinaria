@@ -35,7 +35,7 @@
                                 type='number'
                                 min='1'
                                 step='1'
-                                onchange="updateCart('{{ $cart->id }}', '{{ $cart->product->stock }}')"
+                                onchange="updateCart('{{ $cart->id }}', '{{ $cart->product->stock }}','{{ $cart->product->type }}')"
                                 value="{{ $cart->quantity }}"/>
 
                         </div>
@@ -57,17 +57,18 @@
             </tbody>
         </table>
 
-        <form id="updateCart" action="{{ route('Cart.update', $cart) }}" method="post">
+        <form id="updateCart" action="{{ config('APP_URL').'/Cart/' }}" method="post">
             {{ method_field('PUT') }}
             {{ @csrf_field() }}
+            <input type="hidden" name="id" id="cart_id" value="">
             <input type="hidden" name="quantity" id="quantity" value="">
         </form>
-        <form id="deleteCart" action="{{ route('Cart.destroy', $cart) }}" method="post">
+        <form id="deleteCart" action="{{ config('APP_URL').'/Cart/' }}" method="post">
             {{ method_field('DELETE') }}
             {{ @csrf_field() }}
             <input type="hidden" name="id" id="cart_id" value="">
         </form>
-        <form id="clean" action="{{ route('Cart.Clean') }}" method="post">
+        <form id="clean" action="{{ config('APP_URL').'/Cart/clean' }}" method="post">
             {{ method_field('DELETE') }}
             {{ @csrf_field() }}
         </form>

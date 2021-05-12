@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::delete('/Cart/clean', [CartController::class, 'clean'])->name('Cart.Clean');
+    Route::delete('/Cart/clean', [CartController::class, 'clean'])->name('Cart.clean');
     Route::resource('/Appointements',AppointmentsController::class);
     Route::resource('/Cart', CartController::class);
     Route::resource('/Order',OrderController::class);
