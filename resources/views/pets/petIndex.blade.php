@@ -9,10 +9,10 @@
                 <h3 class="mb-0">Tus Mascotas</h3>
               </div>
               <div class="col-4 text-right">
-                <button class="btn btn-icon btn-primary align-items-center" type="button">
+                <a class="btn btn-icon btn-primary align-items-center" href="{{ route('Pet.create') }}">
                     <span class="btn-inner--icon"><i class="fa fa-paw"></i></span>
                     <span class="btn-inner--text">Agregar Nueva Mascota</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -24,26 +24,27 @@
                 <th scope="col" class="sort" data-sort="name">Nombre</th>
                 <th scope="col" class="sort " data-sort="name">Especie</th>
                 <th scope="col" class="sort " data-sort="name">Raza</th>
-                <th scope="col"></th>
+                <th scope="col">Color</th>
               </tr>
             </thead>
             <tbody class="list">
+              @foreach($pets as $pet)
               <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <a href="#" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffoto-gratis%2Fgolden-retriever-7-anos-sentado-retrato-perro-aislado_191971-2732.jpg&f=1&nofb=1">
+                      <img alt="Image placeholder" src="{{ asset('storage/pets/'.) }}">
                     </a>
                     <div class="media-body ">
-                      <span class="name mb-0 text-sm ">Timmy</span>
+                      <span class="name mb-0 text-sm ">{{ $pet->name }}</span>
                     </div>
                   </div>
                 </th>
                 <td class="name" >
-                  Perro
+                  {{ $pet->breed }}
                 </td>
                 <td class="name">
-                    Golden Retriever
+                    {{ $pet->race }}
                 </td>
 
                 <td class="text-right">
@@ -59,6 +60,7 @@
                     </button>
                 </td>
               </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
