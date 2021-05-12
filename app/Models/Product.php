@@ -16,4 +16,13 @@ class Product extends Model
         'stock',
         'type'
     ];
+
+    public function scopeByType($query, $type) {
+        return $query->where('type','=', $type);
+    }
+
+    public function scopeOrderDesc($query) {
+        return $query->orderByDesc('id');
+    }
+
 }

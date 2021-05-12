@@ -97,4 +97,13 @@ class CartController extends Controller
 
         return response()->redirectToRoute('Cart.index');
     }
+
+    public function clean()
+    {
+        $basket = Cart::byUser(Auth::user()->id)->get();
+        foreach ($basket as $item) {
+            $item->delete();
+        }
+        return response()->redirectToRoute('dashboard');
+    }
 }

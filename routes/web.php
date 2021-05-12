@@ -6,7 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Auth\Events\Login;
+use \App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,16 +25,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Route::get('/car', function (){
-//     return view('shoppingCart');
-// })->name('car');
-
-// Route::get('/login', function () {
-//     return view('welcome');
-// })->name("login");
-
-
 Route::middleware('auth')->group(function () {
+
+    Route::delete('/Cart/clean', [CartController::class, 'clean'])->name('Cart.Clean');
     Route::resource('/Appointements',AppointmentsController::class);
     Route::resource('/Cart', CartController::class);
     Route::resource('/Order',OrderController::class);
@@ -43,6 +36,4 @@ Route::middleware('auth')->group(function () {
     Route::resource('/Product',ProductController::class);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('home');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');

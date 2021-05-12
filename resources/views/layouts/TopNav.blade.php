@@ -36,7 +36,7 @@
           <li>
             <a class="nav-link" href="{{route('Cart.index')}}">
               <i class="ni ni-cart"></i>
-              <span class="badge">10</span>
+              <span class="badge">{{ App\Models\Cart::byUser(Auth::user()->id)->count() }}</span>
             </a>
           </li>
         </ul>
@@ -52,7 +52,7 @@
                 </div>
               </div>
             </a>
-            
+
             <div class="dropdown-menu  dropdown-menu-right ">
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Bienvenido</h6>

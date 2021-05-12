@@ -1,6 +1,7 @@
 @extends('layouts.Arquitect') @section('Content')
 <script type="text/javascript" src="{{ asset('assets/js/cart/update.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/cart/delete.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/cart/clean.js') }}"></script>
 <div class="container">
     <h1 class='text-center mb-5'>
         Carrito de Compras
@@ -61,10 +62,14 @@
             {{ @csrf_field() }}
             <input type="hidden" name="quantity" id="quantity" value="">
         </form>
-        <form id="deleteCard" action="{{ route('Cart.destroy', $cart) }}" method="post">
+        <form id="deleteCart" action="{{ route('Cart.destroy', $cart) }}" method="post">
             {{ method_field('DELETE') }}
             {{ @csrf_field() }}
             <input type="hidden" name="id" id="cart_id" value="">
+        </form>
+        <form id="clean" action="{{ route('Cart.Clean') }}" method="post">
+            {{ method_field('DELETE') }}
+            {{ @csrf_field() }}
         </form>
         <div class='card p-3'>
             <div class='row'>
@@ -84,6 +89,7 @@
                     <button
                         class="btn btn-icon btn-3 btn btn-outline-danger"
                         type="button"
+                        onclick="clean()"
                     >
                         <span class="btn-inner--icon">
                             <i class="ni ni-fat-delete"></i>
