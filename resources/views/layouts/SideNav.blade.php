@@ -12,21 +12,21 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
-                <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="examples/icons.html">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">Icons</span>
+                <i class="fas fa-first-aid text-red"></i>
+                <span class="nav-link-text">Servicios</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="examples/map.html">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Google</span>
+                <i class="fas fa-shopping-bag text-primary"></i>
+                <span class="nav-link-text">Productos</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="examples/map.html">
+                <i class="fas fa-paw text-brown"></i>
+                <span class="nav-link-text">Mascotas</span>
               </a>
             </li>
             <li class="nav-item">
