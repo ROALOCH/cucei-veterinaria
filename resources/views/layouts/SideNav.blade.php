@@ -12,19 +12,19 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="examples/icons.html">
-                <i class="fas fa-first-aid text-red"></i>
-                <span class="nav-link-text">Servicios</span>
+              <a class="nav-link" href="{{route('dashboard')}}">
+                <i class="fas fa-home text-green"></i>
+                <span class="nav-link-text">Inicio</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/map.html">
+              <a class="nav-link" href="{{route('Product.index')}}">
                 <i class="fas fa-shopping-bag text-primary"></i>
-                <span class="nav-link-text">Productos</span>
+                <span class="nav-link-text">Productos/Servicios</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="examples/map.html">
+              <a class="nav-link active" href="{{route('Pet.index')}}">
                 <i class="fas fa-paw text-brown"></i>
                 <span class="nav-link-text">Mascotas</span>
               </a>
