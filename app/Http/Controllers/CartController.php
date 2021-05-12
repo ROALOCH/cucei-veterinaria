@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,8 +41,23 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $cart = new Cart($request->all());
-        $cart->saveOrFail();
+        $cart = Cart::byUserProduct(Auth::user()->id, $request->product_id)->get();
+        if($cart->count() > 0) {
+            $cart = $cart[0];
+            $quantity = $request->quantity;
+            $product = Product::find($request->product_id);
+            if($quantity + $cart->quantity > $product->stock) {
+                $quantity = $product->stock;
+            } else {
+                $quantity += $cart->quantity;
+            }
+            $cart->quantity = $quantity;
+            $cart->save();
+        } else {
+            $cart = new Cart($request->all());
+            $cart->saveOrFail();
+        }
+
 
         return response()->redirectToRoute('Cart.index');
     }

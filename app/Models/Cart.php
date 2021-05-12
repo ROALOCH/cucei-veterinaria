@@ -20,20 +20,30 @@ class Cart extends Model
         'quantity'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function cart(){
+    public function cart()
+    {
         return $this->belongsTo(Cart::class);
     }
 
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
 
-    public function scopeByUser($query, $user_id) {
+    public function scopeByUser($query, $user_id)
+    {
         return $query->where('user_id', '=', $user_id);
+    }
+
+    public function scopeByUserProduct($query, $user_id, $product_id)
+    {
+        return $query->where('product_id','=',$product_id)->
+                where('user_id', '=' , $user_id);
     }
 
     public function getTotalAttribute(){
