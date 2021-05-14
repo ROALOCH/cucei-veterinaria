@@ -15,9 +15,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $isService = $request->routeIs('Service.*');
+        if($isService) {
+            $products = Product::byType('service')->get();
+        } else {
+            $products = Product::byType('product')->get();
+        }
+        return response()->view('products.productList', ['products' => $products, 'isService' => $isService]);
     }
 
     /**

@@ -95,8 +95,11 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($id);
         $cart->quantity = $request->quantity;
-        $cart->save();
-
+        if($cart->quantity > 0) {
+            $cart->save();
+        } else {
+            $cart->delete();
+        }
         return response()->redirectToRoute('Cart.index');
     }
 

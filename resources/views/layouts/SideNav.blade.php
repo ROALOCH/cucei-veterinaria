@@ -12,19 +12,19 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="examples/icons.html">
+              <a class="nav-link" href="{{ route('Service.index') }}">
                 <i class="fas fa-first-aid text-red"></i>
                 <span class="nav-link-text">Servicios</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/map.html">
+              <a class="nav-link" href="{{ route('Product.index') }}">
                 <i class="fas fa-shopping-bag text-primary"></i>
                 <span class="nav-link-text">Productos</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="examples/map.html">
+              <a class="nav-link active" href="{{ route('Pet.index') }}">
                 <i class="fas fa-paw text-brown"></i>
                 <span class="nav-link-text">Mascotas</span>
               </a>
@@ -40,12 +40,6 @@
                 <a class="nav-link" href="examples/profile.html">
                   <i class="ni ni-single-02 text-yellow"></i>
                   <span class="nav-link-text">Usuarios</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="examples/tables.html">
-                  <i class="ni ni-bullet-list-67 text-default"></i>
-                  <span class="nav-link-text">Productos</span>
                 </a>
               </li>
               <li class="nav-item">
