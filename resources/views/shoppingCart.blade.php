@@ -81,6 +81,8 @@
                     <button
                         class="btn btn-icon btn-3 btn btn-outline-success"
                         type="button"
+                        data-toggle="modal"
+                        data-target="#paymentInfo"
                     >
                         <span class="btn-inner--icon">
                             <i class="ni ni-credit-card"></i>
@@ -102,5 +104,57 @@
         </div>
     </div>
     @endif
+</div>
+
+<!-- Modal Pago -->
+<div class="modal fade" id="paymentInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Información del Pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class='row'>
+            <div class='col-8'>
+                <div class="form-group">
+                    <label for="card-name">Titular de la Tarjeta</label>
+                    <input type="text" class="form-control" id="card-name">
+                </div>
+                <div class="form-group">
+                    <label for="card-name">Número de Tarjeta</label>
+                    <input type="text" class="form-control" id="card-name">
+                </div>
+                <div class='row'>
+                    <div class='col-6'>
+                        <div class="form-group">
+                            <label for="card-name">Fecha Expiración</label>
+                            <input type="text" class="form-control" id="card-name" placeholder='MM/AA'>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="card-name">CCV</label>
+                            <input type="text" class="form-control" id="card-name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h2 class='text-center'>Información de Orden</h2>
+                <hr/>
+                <h3>Pedido Número: 1234</h3>
+                <h3>Total a Pagar: $500.00 MXN</h3>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success">Confirmar Pago</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
