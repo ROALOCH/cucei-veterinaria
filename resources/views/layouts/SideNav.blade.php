@@ -24,8 +24,8 @@
     @endswitch
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img src="{{ asset('assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
+        <a class="navbar-brand" href="{{route('dashboard')}}">
+          <img src="{{ asset('assets/img/brand/blue.png') }}" class="navbar-brand-img">
         </a>
       </div>
       <div class="navbar-inner">
