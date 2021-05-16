@@ -8,6 +8,9 @@
       @case("Product.index")
         <style>#products{background-color: lightblue;}</style>
       @break
+      @case("Service.index")
+        <style>#services{background-color: lightblue;}</style>
+      @break
       @case("Pet.create")
       @case("Pet.index")
         <style>#pets{background-color: lightblue;}</style>
@@ -42,7 +45,13 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('Product.index') }}" id="products">
                 <i class="fas fa-shopping-bag text-primary"></i>
-                <span class="nav-link-text">Productos/Servicios</span>
+                <span class="nav-link-text">Productos</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('Service.index') }}" id="services">
+                <i class="fas fa-briefcase-medical text-danger"></i>
+                <span class="nav-link-text">Servicios</span>
               </a>
             </li>
             <li class="nav-item">
