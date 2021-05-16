@@ -4,6 +4,7 @@
       @case("dashboard")
         <style>#home{background-color:lightblue;}</style>
       @break
+      @case("Product.show")
       @case("Product.index")
         <style>#products{background-color: lightblue;}</style>
       @break
