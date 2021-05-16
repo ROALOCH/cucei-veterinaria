@@ -28,12 +28,14 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::delete('/Cart/clean', [CartController::class, 'clean'])->name('Cart.clean');
+    Route::get('/Service', [ProductController::class, 'index'])->name('Service.index');
     Route::resource('/Appointements',AppointmentsController::class);
     Route::resource('/Cart', CartController::class);
     Route::resource('/Order',OrderController::class);
     Route::resource('/OrderDetails',OrderDetailsController::class);
     Route::resource('/Pet',PetController::class);
     Route::resource('/Product',ProductController::class);
+
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
