@@ -33,15 +33,17 @@
   <!-- Sidenav -->
   @include('layouts.SideNav')
   <!-- Main content -->
-  <div class="main-content" id="panel">
+  <div class="main-content" id="panel" style="min-height: 100vh; position: relative">
     <!-- Topnav -->
     @include('layouts.TopNav')
     <!-- Header -->
     <!-- Page content -->
-    <div class="container-fluid">
+    <div class="container-fluid" style='padding-bottom: 2.5rem'>
         @yield('Content')
 
         <!-- Footer -->
+    </div>
+    <div class='container-fluid' style='position: absolute; bottom: 0; width: 100%;'>
       @include('layouts.Footer')
     </div>
   </div>
