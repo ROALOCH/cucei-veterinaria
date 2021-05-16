@@ -16,11 +16,11 @@
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label" for="name">Nombre</label>
-                                <input id='name' type="text" name="name" class="form-control" value="DogChow Extra Life 15KG">
+                                <input id='name' type="text" name="name" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="description">Descripción</label>
-                                <textarea type="text" id='description' name="description" class="form-control" value="DogChow Extra Life 15KG" maxlength='500' rows='5'>En Purina Dog Chow compartimos la responsabilidad de mejorar la calidad de vida de tu perro - 100% completo y balanceado - Contiene una mezcla especial de antioxidantes, vitaminas y minerales - Promueve un pelaje brillante - Ayuda a mantener sus dientes limpios
+                                <textarea type="text" id='description' name="description" class="form-control" value="DogChow Extra Life 15KG" maxlength='500' rows='5'>
                                 </textarea>
                             </div>
                             <div class='row'>
@@ -34,7 +34,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="number" id='price' name='price' step='0.01' class="form-control" value='684.00'>
+                                        <input type="number" id='price' name='price' step='0.01' class="form-control">
                                         <div class="input-group-append">
                                             <span class="input-group-text">MXN</span>
                                         </div>
