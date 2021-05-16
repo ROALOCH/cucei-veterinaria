@@ -23,7 +23,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label" for="name">Nombre</label>
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Nombre de Mascota" value="{{old('name')?? $pet->name ?? ""}}">
+                                <input type="text" id="name" name="name" class="form-control" value="{{old('name')?? $pet->name ?? ""}}">
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-color">Color</label>
-                                <input type="text" id="color" name="color" class="form-control" placeholder="Negro" value="{{old('color')?? $pet->color ?? ""}}">
+                                <input type="text" id="color" name="color" class="form-control" value="{{old('color')?? $pet->color ?? ""}}">
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-race">Raza</label>
-                                <input type="text" id="race" class="form-control" placeholder="Golden Retriever" value="{{old('race')?? $pet->race ?? ""}}">
+                                <input type="text" id="race" class="form-control" value="{{old('race')?? $pet->race ?? ""}}">
                             </div>
                         </div>
                     </div>
