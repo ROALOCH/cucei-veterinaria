@@ -46,7 +46,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{{ route('Pet.index') }}" id="pets">
+              <a class="nav-link" href="{{ route('Pet.index') }}" id="pets">
                 <i class="fas fa-paw text-brown"></i>
                 <span class="nav-link-text">Mascotas</span>
               </a>
