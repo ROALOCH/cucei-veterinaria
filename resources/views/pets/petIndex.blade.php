@@ -25,28 +25,22 @@
                 <th scope="col" class="sort " data-sort="name">Especie</th>
                 <th scope="col" class="sort " data-sort="name">Raza</th>
                 <th scope="col">Color</th>
+                <th></th>
               </tr>
             </thead>
             <tbody class="list">
               @foreach($pets as $pet)
               <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <a href="#" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="">
-                    </a>
-                    <div class="media-body ">
-                      <span class="name mb-0 text-sm ">{{ $pet->name }}</span>
-                    </div>
-                  </div>
-                </th>
+                <td class='name'>{{ $pet->name }}</td>
                 <td class="name" >
-                  {{ $pet->breed }}
+                  {{ $pet->race }}
                 </td>
                 <td class="name">
-                    {{ $pet->race }}
+                    {{ $pet->breed }}
                 </td>
-
+                <td class="name">
+                    {{ $pet->color }}
+                </td>
                 <td class="text-right">
                     <button class="btn btn-icon btn-outline-danger">
                         <span class="btn-inner--icon">
@@ -63,32 +57,6 @@
               @endforeach
             </tbody>
           </table>
-        </div>
-        <!-- Card footer -->
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>
