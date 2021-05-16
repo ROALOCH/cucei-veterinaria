@@ -91,7 +91,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('Product.create')}}" id="productCreate">
                   <i class="ni ni-single-copy-04 text-blue"></i>
-                  <span class="nav-link-text">registrar producto</span>
+                  <span class="nav-link-text">Registrar producto</span>
                 </a>
               </li>
             </ul>
