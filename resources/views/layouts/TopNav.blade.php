@@ -57,10 +57,6 @@
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Bienvenido</h6>
               </div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>My Perfil</span>
-              </a>
               <a href="{{ route('profile.show') }}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Configuracion</span>
