@@ -14,7 +14,7 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('appointments.appointmentIndex');
     }
 
     /**
@@ -24,7 +24,7 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        //
+        return  view('appointments.appointmentForm');
     }
 
     /**
@@ -35,7 +35,7 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

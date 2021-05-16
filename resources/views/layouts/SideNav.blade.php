@@ -8,6 +8,9 @@
       @case("Product.index")
         <style>#products{background-color: lightblue;}</style>
       @break
+      @case("Product.create")
+        <style>#productCreate{background-color: lightblue;}</style>
+      @break
       @case("Service.index")
         <style>#services{background-color: lightblue;}</style>
       @break
@@ -80,9 +83,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="route('Appointements.index')" id="appointements">
+                <a class="nav-link" href="{{route('Appointements.index')}}" id="appointements">
                   <i class="ni ni-collection text-red"></i>
                   <span class="nav-link-text">Citas </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('Product.create')}}" id="productCreate">
+                  <i class="ni ni-single-copy-04 text-blue"></i>
+                  <span class="nav-link-text">registrar producto</span>
                 </a>
               </li>
             </ul>
