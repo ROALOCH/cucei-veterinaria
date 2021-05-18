@@ -12,6 +12,7 @@
             @if(isset($product))
             <form action="{{route('Product.update', $product)}}" method="post" enctype="multipart/form-data">
                 @method('patch')
+                <input type="hidden" name="id" value="{{ $product->id }}">
             @else
             <form action="{{route('Product.store')}}" method="post" enctype="multipart/form-data">
             @endif
@@ -21,17 +22,15 @@
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label" for="name">Nombre</label>
-                                <input id='name' type="text" name="name" class="form-control" value="{{ isset($product) ? $product->name : ""}}">
+                                <input id='name' type="text" name="name" class="form-control" value="{{ isset($product) ? $product->name : ""}}" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="description">Descripción</label>
-                                <textarea type="text" id='description' name="description" class="form-control" maxlength='500' rows='5'>
-                                    {{ isset($product) ? $product->description : ''}}
-                                </textarea>
+                                <textarea type="text" id='description' name="description" class="form-control" maxlength='500' rows='5' required>{{ isset($product) ? $product->description : ''}}</textarea>
                             </div>
                             <div class='row'>
                                 <div class="col-6 form-group">
-                                    <label class="form-control-label" for="image-input">Imagen</label>
+                                    <label class="form-control-label" for="image-input">{{ isset($product) ? 'Cargar otra imagen' : 'Imagen'}}</label>
                                     <input type="file" id='image' name="image" class="form-control" {{ isset($product) ? '' : 'required' }}>
                                 </div>
                                 <div class='col-6 form-group'>
@@ -40,7 +39,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="number" id='price' name='price' step='0.01' class="form-control" value="{{ isset($product) ? $product->price : ""}}">
+                                        <input type="number" id='price' name='price' step='0.01' class="form-control" value="{{ isset($product) ? $product->price : ""}}" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text">MXN</span>
                                         </div>

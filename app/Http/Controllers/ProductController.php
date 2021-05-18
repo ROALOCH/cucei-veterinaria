@@ -92,7 +92,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-
+        $product = Product::findOrFail($request->id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        if($request->hasFile('image')) {
+            $file = $request->file("image");
+            $filename = str_shuffle(str_replace('.','',$file->getClientOriginalName())).
+                '.'.$file->getClientOriginalExtension();
+            $file->move("storage/products/",$filename);
+            $product->image_url = $filename;
+        }
+        $product->saveOrFail();
+        return response()->redirectToRoute('Product.show',$product->id);
     }
 
     /**

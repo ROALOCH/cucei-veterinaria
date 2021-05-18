@@ -37,7 +37,9 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pet = new Pet($request->all());
+        $pet->saveOrFail();
+        return response()->redirectToRoute('Pet.index');
     }
 
     /**

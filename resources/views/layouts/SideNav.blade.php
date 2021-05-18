@@ -26,7 +26,7 @@
       @break
       @case("Appointements.index")
         <style>#appointements{background-color: lightblue;}</style>
-      @break 
+      @break
     @endswitch
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
@@ -63,11 +63,11 @@
                 <span class="nav-link-text">Mascotas</span>
               </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('Appointements.create')}}" id="appointementsClient">
-                  <i class="ni ni-collection text-red"></i>
-                  <span class="nav-link-text">Agendar cita</span>
-                </a>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{route('Appointements.index')}}" id="appointements">
+                      <i class="ni ni-collection text-red"></i>
+                      <span class="nav-link-text">Citas </span>
+                  </a>
               </li>
           </ul>
           @can('isAdmin')
@@ -80,12 +80,6 @@
                 <a class="nav-link" href="#" id="users">
                   <i class="ni ni-single-02 text-yellow"></i>
                   <span class="nav-link-text">Usuarios</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('Appointements.index')}}" id="appointements">
-                  <i class="ni ni-collection text-red"></i>
-                  <span class="nav-link-text">Citas </span>
                 </a>
               </li>
               <li class="nav-item">

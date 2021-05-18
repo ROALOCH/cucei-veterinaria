@@ -12,7 +12,7 @@ class Pet extends Model
         'user_id',
         'name',
         'race',
-        'bread',
+        'breed',
         'birth_date',
         'color'
     ];
