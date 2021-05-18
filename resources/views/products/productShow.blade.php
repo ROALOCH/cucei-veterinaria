@@ -29,6 +29,7 @@
                         <!-- BOTÓN AGREGAR CARRITO -->
 
                         <div class="d-flex justify-content-center">
+                            @can('isClient')
                             <form action="{{ route('Cart.store') }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -53,7 +54,18 @@
                                     <span class="btn-inner--text">Agregar al Carrito</span>
                                 </button>
                             </form>
-
+                            @endcan
+                            @can('isAdmin')
+                                    <a
+                                        class="btn btn-icon btn-3 btn btn-outline-success"
+                                        href="{{route('Product.edit', $product)}}"
+                                    >
+                                <span class="btn-inner--icon"
+                                ><i class="ni ni-active-40"></i
+                                    ></span>
+                                        <span class="btn-inner--text">Editar {{ $product->type == 'product' ? 'producto' : 'servicio' }}</span>
+                                    </a>
+                            @endcan
                         </div>
                     </div>
                 </div>

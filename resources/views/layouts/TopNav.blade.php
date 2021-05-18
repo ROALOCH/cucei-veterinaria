@@ -33,12 +33,14 @@
               <i class="ni ni-zoom-split-in"></i>
             </a>
           </li>
+       @can('isClient')
           <li>
             <a class="nav-link" href="{{route('Cart.index')}}">
               <i class="ni ni-cart"></i>
               <span class="badge">{{ App\Models\Cart::byUser(Auth::user()->id)->count() }}</span>
             </a>
           </li>
+        @endcan
         </ul>
         <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
           <li class="nav-item dropdown">

@@ -12,11 +12,12 @@
             @if (isset($receta))
                 <form action="{{ route('Pet.update', [$pet]) }}" method="POST">
                     @method('patch')
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             @else
                 <form action="{{route('Pet.store')}}" method="POST">
             @endif
                 {{ csrf_field() }}
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
                 <h6 class="heading-small text-muted mb-4">Información General</h6>
                 <div class="pl-lg-4">
                     <div class="row">

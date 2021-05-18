@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -32,7 +35,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->user_type == 'admin';
         });
 
-        Gate::define('isClient', function ($user){
+        Gate::define('isClient', function ($user)
+        {
             return $user->user_type == 'client';
         });
     }
