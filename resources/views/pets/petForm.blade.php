@@ -9,9 +9,10 @@
             </div>
         </div>
         <div class="card-body">
-            @if (isset($receta))
+            @if (isset($pet))
                 <form action="{{ route('Pet.update', [$pet]) }}" method="POST">
-                    @method('patch')
+                    @method('put')
+                    <input type="hidden" name="id" value="{{ $pet->id }}">
             @else
                 <form action="{{route('Pet.store')}}" method="POST">
             @endif
@@ -53,8 +54,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="race-selector">Especie</label>
-                                <select name="race" class="form-control" id="race-selector" value="value="{{old('color')?? $pet->race ?? ''}}" required>
-                                    <option value="" selected disabled>Seleccione una</option>
+                                <select name="race" class="form-control" id="race-selector" value="{{old('color')?? $pet->race ?? ''}}" required>
+                                    <option value="" {{ isset($pet) ? '' : 'selected' }} disabled>Seleccione una</option>
                                     <option value="Perro">Perro</option>
                                     <option value="Gato">Gato</option>
                                     <option value="Conejo">Conejo</option>
@@ -72,7 +73,11 @@
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary my-4">Registrar Mascota</button>
+                    @if(isset($pet))
+                        <button type="submit" class="btn btn-primary my-4">Modificar Mascota</button>
+                    @else
+                        <button type="submit" class="btn btn-primary my-4">Registrar Mascota</button>
+                    @endif
                 </div>
             </form>
         </div>

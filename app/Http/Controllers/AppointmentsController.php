@@ -19,7 +19,7 @@ class AppointmentsController extends Controller
     public function index()
     {
         if(Auth::user()->user_type == 'admin') {
-            $appointments = Appointments::with('user')->get();
+            $appointments = Appointments::with('pet', 'user')->get();
             return response()->view('appointments.appointmentIndex', ['appointments' => $appointments]);
         } else {
             $pets = Pet::byOwner(Auth::user()->id)->get();

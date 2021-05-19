@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -35,7 +36,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order($request->all());
+        $order->save();
+        for($i = 0; $i < count($request->product); $i++) {
+            $orderDetail = new OrderDetails();
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $request->product[$i];
+            $orderDetail->quantity = $request->quantity[$i];
+            $orderDetail->price = $request->price[$i];
+            $orderDetail->save();
+        }
+
+        return response()->redirectToRoute('Home.index');
     }
 
     /**

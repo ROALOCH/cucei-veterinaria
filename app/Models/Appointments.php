@@ -21,7 +21,7 @@ class Appointments extends Model
     }
 
     public function pet(){
-        return $this->belongsTo(Pet::class);
+        return $this->belongsTo(Pet::class)->withTrashed();
     }
 
     public function scopeByUser($query, $user_id)
