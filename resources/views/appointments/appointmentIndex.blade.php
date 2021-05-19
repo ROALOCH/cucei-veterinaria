@@ -40,7 +40,7 @@
               @foreach($appointments as $appointment)
               <tr>
                 @can('isAdmin')
-                      <td>Rodrigo Ochoa</td>
+                      <td>{{ $appointment->user->name }}</td>
                 @endcan
                 <td>{{ $appointment->scheduled_for }}</td>
                 <td>{{ $appointment->pet->name }}</td>

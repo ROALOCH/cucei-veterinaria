@@ -28,9 +28,4 @@ class Appointments extends Model
     {
         return $query->where('user_id', '=', $user_id);
     }
-
-    public function setScheduledForAttribute($value)
-    {
-        $this->attributes['scheduled_for'] = Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('Y-m-d HH:mm:ss');
-    }
 }
