@@ -21,7 +21,7 @@ Una vez ejecutado el comando anterior, el proyecto se puede visualizar en [http:
 
 ## Uso
 
-Demo del proyecto accesible en [Heroku](#).
+Demo del proyecto accesible en [Heroku](http://vet-db.herokuapp.com/).
 
 ## Licencia
 
