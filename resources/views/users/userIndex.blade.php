@@ -24,7 +24,7 @@
           </div>
         <!-- Light table -->
         <div class="table-responsive">
-          <table class="table align-items-center table-flush">
+          <table  id="table-users" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="name">Nombre</th>
@@ -57,10 +57,16 @@
                         <form action="{{ route('User.update', [$user]) }}" method="POST" id="ajaxform" name="form">
                             @method("PUT")
                             {{ csrf_field() }}
-                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <select onchange="mySubmit(this.form)" name="userType" class="form-control" id="userType" value="value="{{old('userType')?? $user->user_type ?? ''}}">
-                                <option value="admin">Administrador</option>
-                                <option value="client">Cliente</option>
+                                @if ($user->user_type == "admin")
+                                <option value="admin" selected>Administrador</option>
+                                <option value="client" >Cliente</option>
+                                @else
+                                <option value="admin" >Administrador</option>
+                                <option value="client" selected>Cliente</option>
+
+                                @endif
                             </select>
                         </form>
 
@@ -125,12 +131,16 @@ function mySubmit(theForm) {
         url: $(theForm).attr('action'), // the file to call
         success: function (response) { // on success..
             console.log(response);
+            refreshTable();
         },
             error: function (data) {
                 console.log('An error occurred.');
                 console.log(data);
             },
     });
+}
+function refreshTable() {
+    $("#table-users").load(window.location + " #table-users");
 }
 </script>
 @endsection

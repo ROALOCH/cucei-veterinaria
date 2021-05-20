@@ -71,9 +71,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $userId = $request->user_id;
-        $request->validate([
-            'user_type' => ['string'],
-        ]);
         User::where('id',$userId)->update(['user_type'=> $request->userType]);
         return response()->json(['success'=> $userId]);
         //
