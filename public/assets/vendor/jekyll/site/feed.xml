@@ -30,7 +30,7 @@ permalink: /feed.xml
     </image>
     {% for post in site.posts %}
     <item>
-      <title>{{ post.title | xml_escape}}</title>
+      <title>Veterinaria</title>
       <link>http://jekyllrb.com{{ post.url }}</link>
       <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
       <dc:creator>{{ post.author }}</dc:creator>
