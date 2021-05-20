@@ -2,30 +2,30 @@
     <div class="scrollbar-inner">
     @switch(Route::current()->getName())
       @case("dashboard")
-        <style>#home{background-color:lightblue;}</style>
+        <style>#home{color: white; background-color: #5E72E4;}</style>
       @break
       @case("Product.show")
       @case("Product.index")
-        <style>#products{background-color: lightblue;}</style>
+        <style>#products{color: white; background-color: #5E72E4;}</style>
       @break
       @case("Product.create")
-        <style>#productCreate{background-color: lightblue;}</style>
+        <style>#productCreate{color: white; background-color: #5E72E4;}</style>
       @break
       @case("Service.index")
-        <style>#services{background-color: lightblue;}</style>
+        <style>#services{color: white; background-color: #5E72E4;}</style>
       @break
       @case("Pet.create")
       @case("Pet.index")
-        <style>#pets{background-color: lightblue;}</style>
+        <style>#pets{color: white; background-color: #5E72E4;}</style>
       @break
       @case("Appointements.create")
-        <style>#appointementsClient{background-color: lightblue;}</style>
+        <style>#appointementsClient{color: white; background-color: #5E72E4;}</style>
       @break
       @case("#")
-        <style>#users{background-color: lightblue;}</style>
+        <style>#users{color: white; background-color: #5E72E4;}</style>
       @break
       @case("Appointements.index")
-        <style>#appointements{background-color: lightblue;}</style>
+        <style>#appointements{color: white; background-color: #5E72E4;}</style>
       @break
     @endswitch
       <!-- Brand -->
@@ -42,12 +42,12 @@
             <li class="nav-item">
               <a class="nav-link" href="{{route('dashboard')}}" id="home">
                 <i class="fas fa-home text-green"></i>
-                <span class="nav-link-text">Inicio </span>
+                <span class="nav-link-text">Inicio</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('Product.index') }}" id="products">
-                <i class="fas fa-shopping-bag text-primary"></i>
+                <i class="fas fa-shopping-bag text-info"></i>
                 <span class="nav-link-text">Productos</span>
               </a>
             </li>
@@ -66,7 +66,7 @@
               <li class="nav-item">
                   <a class="nav-link" href="{{route('Appointements.index')}}" id="appointements">
                       <i class="ni ni-collection text-red"></i>
-                      <span class="nav-link-text">Citas </span>
+                      <span class="nav-link-text">Citas</span>
                   </a>
               </li>
           </ul>
@@ -84,8 +84,8 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{route('Product.create')}}" id="productCreate">
-                  <i class="ni ni-single-copy-04 text-blue"></i>
-                  <span class="nav-link-text">Registrar producto</span>
+                  <i class="ni ni-single-copy-04 text-info"></i>
+                  <span class="nav-link-text">Registrar Producto</span>
                 </a>
               </li>
             </ul>
