@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointments;
+use App\Models\Pet;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentsController extends Controller
 {
@@ -14,7 +18,15 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        return view('appointments.appointmentIndex');
+        if(Auth::user()->user_type == 'admin') {
+            $appointments = Appointments::with('pet', 'user')->get();
+            return response()->view('appointments.appointmentIndex', ['appointments' => $appointments]);
+        } else {
+            $pets = Pet::byOwner(Auth::user()->id)->get();
+            $appointments = Appointments::byUser(Auth::user()->id)->with('pet')->get();
+            return response()->view('appointments.appointmentIndex', ['appointments' => $appointments, 'pets' => $pets]);
+        }
+
     }
 
     /**
@@ -24,7 +36,7 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        return  view('appointments.appointmentForm');
+        return  response()->view('appointments.appointmentForm');
     }
 
     /**
@@ -35,7 +47,10 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $appointment = new Appointments($request->all());
+
+        $appointment->save();
+        return response()->redirectToRoute('Appointements.index');
     }
 
     /**
@@ -57,7 +72,10 @@ class AppointmentsController extends Controller
      */
     public function edit(Appointments $appointments)
     {
-        //
+        /*
+         * No c si se pueda utilizar la misma bista, kreo k no
+         */
+        return response()->view('appointments.appointmentForm');
     }
 
     /**
@@ -78,8 +96,10 @@ class AppointmentsController extends Controller
      * @param  \App\Models\Appointments  $appointments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointments $appointments)
+    public function destroy(Appointments $appointments, $id)
     {
-        //
+        $appointment = Appointments::findOrFail($id);
+        $appointment->delete();
+        return response()->redirectToRoute('Appointements.index');
     }
 }

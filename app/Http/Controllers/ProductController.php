@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->authorizeResource(Product::class, 'product');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -65,7 +68,7 @@ class ProductController extends Controller
     public function show(Product $product, $id)
     {
         $product = Product::findOrFail($id);
-        return response()->view('products.productShow', ['product' => $product ]);
+        return response()->view('products.productShow', ['product' => $product]);
     }
 
     /**
@@ -74,9 +77,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return response()->view('products.productForm', ['product' => $product]);
     }
 
     /**
@@ -88,7 +92,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product = Product::findOrFail($request->id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        if($request->hasFile('image')) {
+            $file = $request->file("image");
+            $filename = str_shuffle(str_replace('.','',$file->getClientOriginalName())).
+                '.'.$file->getClientOriginalExtension();
+            $file->move("storage/products/",$filename);
+            $product->image_url = $filename;
+        }
+        $product->saveOrFail();
+        return response()->redirectToRoute('Product.show',$product->id);
     }
 
     /**

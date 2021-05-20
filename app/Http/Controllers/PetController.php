@@ -15,7 +15,12 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::byOwner(Auth::user()->id)->get();
+        if(Auth::user()->user_type == 'admin') {
+            $pets = Pet::with('user')->get();
+            //dd($pets);
+        } else {
+            $pets = Pet::byOwner(Auth::user()->id)->get();
+        }
         return response()->view('pets.petIndex', ['pets' => $pets]);
     }
 
@@ -37,7 +42,9 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pet = new Pet($request->all());
+        $pet->saveOrFail();
+        return response()->redirectToRoute('Pet.index');
     }
 
     /**
@@ -46,9 +53,10 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function show(Pet $pet)
+    public function show(Pet $pet, $id)
     {
-        return response()->view('pets.PetShow', $pet);
+        $pet = Pet::findOrFail($id);
+        return response()->view('pets.petShow', ['pet' => $pet]);
     }
 
     /**
@@ -57,9 +65,10 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pet $pet)
+    public function edit(Pet $pet, $id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+        return response()->view('pets.petForm', ['pet' => $pet]);
     }
 
     /**
@@ -71,7 +80,10 @@ class PetController extends Controller
      */
     public function update(Request $request, Pet $pet)
     {
-        //
+        $pet = Pet::findOrFail($request->id);
+        $pet->fill($request->all());
+        $pet->save();
+        return response()->redirectToRoute('Pet.index');
     }
 
     /**
@@ -80,8 +92,11 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy(Pet $pet, $id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+        $pet->delete();
+
+        return response()->redirectToRoute('Pet.index');
     }
 }

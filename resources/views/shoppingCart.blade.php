@@ -107,54 +107,64 @@
 </div>
 
 <!-- Modal Pago -->
-<div class="modal fade" id="paymentInfo" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Información del Pago</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class='row'>
-            <div class='col-8'>
-                <div class="form-group">
-                    <label for="card-name">Titular de la Tarjeta</label>
-                    <input type="text" class="form-control" id="card-name">
-                </div>
-                <div class="form-group">
-                    <label for="card-name">Número de Tarjeta</label>
-                    <input type="text" class="form-control" id="card-name">
-                </div>
-                <div class='row'>
-                    <div class='col-6'>
-                        <div class="form-group">
-                            <label for="card-name">Fecha Expiración</label>
-                            <input type="text" class="form-control" id="card-name" placeholder='MM/AA'>
+<form action="{{ route('Order.store') }}" method="post" style="display: inline">
+    <div class="modal fade" id="paymentInfo" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Información del Pago</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class='row'>
+                <div class='col-8'>
+                    <div class="form-group">
+                        <label for="card-name">Titular de la Tarjeta</label>
+                        <input type="text" class="form-control" id="card-name" name="name-card" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-name">Número de Tarjeta</label>
+                        <input type="text" class="form-control" id="card-name" name="card" required>
+                    </div>
+                    <div class='row'>
+                        <div class='col-6'>
+                            <div class="form-group">
+                                <label for="card-name">Fecha Expiración</label>
+                                <input type="text" class="form-control" id="card-name" placeholder='MM/AA' name="expires" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="card-name">CCV</label>
+                                <input type="text" class="form-control" id="card-name" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="card-name">CCV</label>
-                            <input type="text" class="form-control" id="card-name">
-                        </div>
-                    </div>
+                </div>
+                <div class="col-4">
+                    <h2 class='text-center'>Información de Orden</h2>
+                    <hr/>
+                    <h3>Pedido Número: {{ App\Models\Order::all()->count() + 1 }}</h3>
+                    <h3>Total a Pagar: ${{ App\Models\Cart::total($basket) }} MXN</h3>
                 </div>
             </div>
-            <div class="col-4">
-                <h2 class='text-center'>Información de Orden</h2>
-                <hr/>
-                <h3>Pedido Número: 1234</h3>
-                <h3>Total a Pagar: $500.00 MXN</h3>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+
+                  {{ @csrf_field() }}
+                  <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                  <input type="hidden" name="total" value="{{ App\Models\Cart::total($basket) }}">
+                  @foreach($basket as $cart)
+                      <input type="hidden" name="cart[]" value="{{ $cart->id }}">
+                  @endforeach
+                  <input type="submit" class="btn btn-success" value="Confirmar Pago">
+
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success">Confirmar Pago</button>
-      </div>
     </div>
-  </div>
-</div>
+</form>
 @endsection
