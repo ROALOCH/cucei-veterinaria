@@ -83,7 +83,7 @@ class PetController extends Controller
         $pet = Pet::findOrFail($request->id);
         $pet->fill($request->all());
         $pet->save();
-        return response()->view('pets.petShow', ['pet' => $pet]);
+        return response()->redirectToRoute('Pet.index');
     }
 
     /**

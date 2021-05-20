@@ -45,6 +45,7 @@
                 <th scope="col" class="sort " data-sort="name">Especie</th>
                 <th scope="col" class="sort " data-sort="name">Raza</th>
                 <th scope="col">Color</th>
+                <th scope="col">Fecha de nacimiento</th>
                 <th></th>
               </tr>
             </thead>
@@ -63,6 +64,9 @@
                 </td>
                 <td class="name">
                     {{ $pet->color }}
+                </td>
+                <td>
+                    {{ $pet->birth_date }}
                 </td>
                 <td class="text-right">
                     <form action="{{route('Pet.destroy', $pet)}}" method="post" style="display: inline;">

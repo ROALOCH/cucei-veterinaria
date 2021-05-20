@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
@@ -38,16 +39,18 @@ class OrderController extends Controller
     {
         $order = new Order($request->all());
         $order->save();
-        for($i = 0; $i < count($request->product); $i++) {
+        foreach($request->cart as $cart_id) {
             $orderDetail = new OrderDetails();
             $orderDetail->order_id = $order->id;
-            $orderDetail->product_id = $request->product[$i];
-            $orderDetail->quantity = $request->quantity[$i];
-            $orderDetail->price = $request->price[$i];
+            $cart = Cart::with('product')->get()->find($cart_id);
+            $orderDetail->product_id = $cart->product_id;
+            $orderDetail->quantity = $cart->quantity;
+            $orderDetail->price = $cart->product->price;
+            $cart->delete();
             $orderDetail->save();
         }
 
-        return response()->redirectToRoute('Home.index');
+        return response()->redirectToRoute('dashboard');
     }
 
     /**

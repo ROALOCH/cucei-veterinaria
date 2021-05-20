@@ -158,9 +158,7 @@
                   <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                   <input type="hidden" name="total" value="{{ App\Models\Cart::total($basket) }}">
                   @foreach($basket as $cart)
-                      <input type="hidden" name="product[]" value="{{ $cart->product->id }}">
-                      <input type="hidden" name="quantity[]" value="{{ $cart->quantity }}">
-                  <input type="hidden" name="price[]" value="{{ $cart->product->price }}">
+                      <input type="hidden" name="cart[]" value="{{ $cart->id }}">
                   @endforeach
                   <input type="submit" class="btn btn-success" value="Confirmar Pago">
 
