@@ -77,7 +77,7 @@
             </h6>
             <ul class="navbar-nav mb-md-3">
               <li class="nav-item">
-                <a class="nav-link" href="#" id="users">
+                <a class="nav-link" href="{{route('User.index')}}" id="users">
                   <i class="ni ni-single-02 text-yellow"></i>
                   <span class="nav-link-text">Usuarios</span>
                 </a>

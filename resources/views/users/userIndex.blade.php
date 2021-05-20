@@ -60,7 +60,7 @@
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <select onchange="mySubmit(this.form)" name="userType" class="form-control" id="userType" value="value="{{old('userType')?? $user->user_type ?? ''}}">
                                 <option value="admin">Administrador</option>
-                                <option value="cliente">Usuario</option>
+                                <option value="client">Cliente</option>
                             </select>
                         </form>
 
@@ -71,7 +71,7 @@
                         <form action="{{ route('User.destroy', [$user]) }}" method="POST" id="ajaxform" name="form">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-icon btn-outline-danger">
+                            <button type="submit" class="btn btn-icon btn-outline-danger">
                                 <span class="btn-inner--icon">
                                     <i class="fa fa-trash"></i>
                                 </span>
@@ -124,7 +124,6 @@ function mySubmit(theForm) {
         type: $(theForm).attr('method'), // GET or POST
         url: $(theForm).attr('action'), // the file to call
         success: function (response) { // on success..
-            $('#here').html(response); // update the DIV
             console.log(response);
         },
             error: function (data) {

@@ -70,12 +70,12 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        echo $user;
+        $userId = $request->user_id;
         $request->validate([
             'user_type' => ['string'],
         ]);
-        User::where('id',$user->id)->update($request->only('user_type'));
-        return response()->json(['success'=>'Data is successfully updated']);
+        User::where('id',$userId)->update(['user_type'=> $request->userType]);
+        return response()->json(['success'=> $userId]);
         //
     }
 
@@ -85,8 +85,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('User.index');
     }
 }
