@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title text-center">{{ $product->name }}</h1>
-                        <p class="card-text">
+                        <p class="card-text text-justify">
                             {{ $product->description }}
                         </p>
                         <hr />

@@ -6,7 +6,7 @@
         {{ $isService ? 'Servicios' : 'Productos' }}
     </h1>
     <hr/>
-    <div class='row d-flex justify-content-start'>
+    <div class='row d-flex justify-content-start mb-5'>
         @foreach($products as $product)
         <div class="col-lg-4 col-md-4 col-sm-10 card mr-2" style='max-width: 20rem'>
             <img class="card-img-top" src="{{ $product->image_url }}">
