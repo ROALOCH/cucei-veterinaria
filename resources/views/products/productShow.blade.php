@@ -7,7 +7,7 @@
                 <div class="card">
                     <img
                         class="card-img-top"
-                        src="{{ asset('storage/products/'.$product->image_url) }}"
+                        src="{{ $product->image_url }}"
                         alt="product"
                     />
                 </div>

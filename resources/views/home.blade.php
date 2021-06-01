@@ -9,7 +9,7 @@
         @foreach($products as $product)
         <div class="col col-sm-8 col-md-4 col-lg-4">
             <div class="card mr-2">
-                <img class="card-img-top" src="{{ asset('storage/products/'. $product->image_url) }}">
+                <img class="card-img-top" src="{{ $product->image_url }}">
                 <div class="card-body">
                     <h3 class="card-title">{{ $product->name }}</h3>
                     <p class="card-text">${{ $product->price }} MXN</p>
@@ -31,7 +31,7 @@
         @foreach($services as $service)
         <div class="col col-md-5 col-sm-10 col-lg-5">
             <div class="card m-2">
-                <img class="card-img-top" src="{{ asset('storage/products/'. $service->image_url) }}">
+                <img class="card-img-top" src="{{ $service->image_url }}">
                 <div class="card-body">
                     <h3 class="card-title">{{ $service->name }}</h3>
                     <p class="card-text">${{ $service->price }} MXN</p>
