@@ -49,12 +49,26 @@ class ProductController extends Controller
     {
         $product = new Product($request->all());
         if($request->hasFile('image')) {
+
+            /* Store on Public Folder
+
             $file = $request->file("image");
             $filename = str_shuffle(str_replace('.','',$file->getClientOriginalName())).
                         '.'.$file->getClientOriginalExtension();
             $file->move("storage/products/",$filename);
             $product->image_url = $filename;
+
+            */
+
+            // Store on Cloudinary // 
+
+            $result = $request->file('image')->storeOnCloudinary('vet/products');
+            $url = $result->getSecurePath();
+
+            $product->image_url = $url;
+
         }
+        
         $product->save();
         return response()->redirectToRoute('Product.show',$product->id);
     }
