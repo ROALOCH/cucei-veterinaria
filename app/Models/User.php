@@ -18,6 +18,17 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function updateProfilePhoto($photo)
+    {
+        $result = $photo->storeOnCloudinary('vet/profile');
+        $this->profile_photo_path = $result->getSecurePath();
+    }
+
+    public function getProfilePhotoUrlAttribute(){
+        return $this->profile_photo_path
+                    ? $this->profile_photo_path
+                    : $this->defaultProfilePhotoUrl();
+    }
     /**
      * The attributes that are mass assignable.
      *
